@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.TreeMap;
 import org.apache.commons.lang3.builder.CompareToBuilder;
 
 /**
@@ -110,6 +111,14 @@ public class Movie  implements Comparable<Movie>{
         
     Set<String> keys = movies.keySet();
     for(String key : keys){
+        Movie found = movies.get(key);
+        System.out.println(found.toString());
+    }
+    
+    System.out.println("\nUsing a keyset, get the the movies sorted by the key...");
+    Map<String, Movie> movies2 = new TreeMap<>(movies);
+    Set<String> keys2 = movies2.keySet();
+    for(String key : keys2){
         Movie found = movies.get(key);
         System.out.println(found.toString());
     }
