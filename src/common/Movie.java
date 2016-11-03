@@ -1,11 +1,8 @@
 package common;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 import org.apache.commons.lang3.builder.CompareToBuilder;
+import common.MovieByDirector;
 
 /**
  * For practice, add the required equals, hashCode and toString methods. Then
@@ -104,8 +101,8 @@ public class Movie  implements Comparable<Movie>{
     
     // get and output a single movie object from the HashMap
     Movie m = movies.get("Dinner Movie");
-        System.out.println("\tRetrieve a single Movie object from the HashMap...");
-        System.out.println("Found Movie with key 'Dinner Movie': " + m);
+        System.out.println("\tRetrieve a single Movie object from the HashMap..." + 
+                "\nFound Movie with key 'Dinner Movie': " + m);
     
     System.out.println("\n\tUsing a keyset, get the movies by key, unsorted, unordered...");
         
@@ -118,9 +115,34 @@ public class Movie  implements Comparable<Movie>{
     System.out.println("\nUsing a keyset, get the the movies sorted by the key...");
     Map<String, Movie> movies2 = new TreeMap<>(movies);
     Set<String> keys2 = movies2.keySet();
+    
     for(String key : keys2){
         Movie found = movies.get(key);
         System.out.println(found.toString());
     }
+    
+        System.out.println("\nSort movies by their values...");
+        Collection<Movie> values = movies.values();
+        
+        List<Movie> sortedList = new ArrayList<>(values);
+        
+        Collections.sort(sortedList);
+        
+        for(Movie sm : sortedList){
+            System.out.println(sm);
+        }
+        
+        System.out.println("\nUsing a collection of values, get the Movies"
+                + " sorted by a Comparator (director) as an alternative"
+                + " to the natural order...");
+        
+        Collection<Movie> values2 = movies.values();
+        
+        List<Movie> sortedList2 = new ArrayList<>(values2);
+        
+        Collections.sort(sortedList2, new MovieByDirector());
+        for(Movie sm2 : sortedList2){
+            System.out.println(sm2);
+        }
     }
 }
